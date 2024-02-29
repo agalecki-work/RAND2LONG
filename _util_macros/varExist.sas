@@ -1,0 +1,11 @@
+%macro varexist(ds, var);
+    %local dsid;
+    %let dsid = %sysfunc(open(&ds));
+    %put --- macro varexist:  ds := &ds,  dsid := &ds; 
+    %if (&dsid) %then %do;
+        %if %sysfunc(varnum(&dsid, &var)) %then 1;
+        %else 0;
+        %let rc = %sysfunc(close(&dsid));
+    %end;
+    %else 0;
+%mend varexist;
