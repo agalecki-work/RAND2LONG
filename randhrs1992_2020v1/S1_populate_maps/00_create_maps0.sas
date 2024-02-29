@@ -8,7 +8,7 @@ filename macros "&prj_path\&dir_name\_macros";
 %include macros(zzz_xlsx_include);
 %zzz_xlsx_include;
 
-/* Execution starts */
+/* ==== Execution starts =====*/
 %_project_setup;
 
 
@@ -38,7 +38,7 @@ run;
 %import_xlsx_map(Rwide);
 %import_xlsx_map(Rexit);
 %import_xlsx_map(RSSI);
-
+%import_xlsx_map(SLong);
 ods html close;
 
 

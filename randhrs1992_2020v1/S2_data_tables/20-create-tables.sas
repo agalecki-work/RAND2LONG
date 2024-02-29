@@ -58,11 +58,11 @@ run;
 
 /* Dictionaries */
 
-libame dict "&dir_path/_05aux/&table";
+libname dict "&dir_path/_05aux/&table";
 
 data _dict.&table._dict;
   set dict.&table._dict;
-  drop ctype valid_name varin 
+  drop ctype valid_name varin; 
 run;
 
   
@@ -92,3 +92,4 @@ quit;
 %_20create_table(Rwide, hhid  PN);
 %_20create_table(Rexit, hhid  PN);
 %_20create_table(RSSI,  hhid  PN RSSI_EPISODE);
+%_20create_table(SLong, hhid  PN wave_number);

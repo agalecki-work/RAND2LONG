@@ -166,5 +166,5 @@ libname _stmnts clear;
 
 %_05map_file_create(RSSI);
 
-
+%_05map_file_create(SLong);
 

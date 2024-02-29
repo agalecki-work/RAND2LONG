@@ -1,4 +1,7 @@
 %macro import_xlsx_map (table);
+/* Auxiliary macro vars */
+%let rssi_max  = 11;   /* Maximum number of SSI episodes */
+%let hrswv_max =15;    /* Number of waves */
 
 %put ===>  Macro `import_xlsx_map` STARTS for table &table;
 %let tmp = &xlsx_path\&xlsx_name..xlsx;
@@ -39,27 +42,32 @@ alter table _temp_
          
 quit;
 
+/*=== RSSI table ====*/
 %if %upcase(&table) = RSSI %then %do;
+%let idx = %eval(&rssi_max -1); 
 proc sql noprint;
 alter table _temp_
   modify
- %do i=1 %to 10;
+ %do i=1 %to &idx;   /* Ex. 11-1=10 */
     RSSI_E&i char(40) format = $40.,
  %end;
-    RSSI_E11 char(40) format = $40.;
+    RSSI_E&rssi_max char(40) format = $40.; /* Ex. RSSI_E11  */
 quit;
 %end;
 
 
-%if (%upcase(&table) = RLONG or %upcase(&table) = HLONG)  %then %do;
-%put --- IF RLONG or HLONG: STEP 3A;
+/*=== Long tables only ====*/
+%let tableup =%upcase(&table); 
+%if (&tableup = RLONG or &tableup = HLONG or &tableup = SLONG)  %then %do;
+%put --- IF RLONG or HLONG or SLONG : STEP 3A;
+%let idx = %eval(&hrswv_max -1);
 proc sql noprint;
 alter table _temp_
   modify
- %do i=1 %to 14;
+ %do i=1 %to &idx;  /* Ex. 15-1=14 */
     hrs_wave&i char(40) format = $40.,
  %end;
-    hrs_wave15 char(40) format = $40.;
+    hrs_wave&hrswv_max char(40) format = $40.;
 quit;
 %end;
 

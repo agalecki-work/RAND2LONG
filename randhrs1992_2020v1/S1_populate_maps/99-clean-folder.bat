@@ -8,8 +8,12 @@ timeout /t 5
 del *.xlsx
 del *.log 
 del *.lst
-del *.xlsx
+del *.xls
 del *.sas7bdat
 del *.html
 del *.htm
+
+del maps\*.sas7bdat
+del maps0\*.sas7bdat
+
 
