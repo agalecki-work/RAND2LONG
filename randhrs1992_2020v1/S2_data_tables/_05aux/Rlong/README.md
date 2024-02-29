@@ -1,0 +1,1 @@
+# Auxiliary info for selected map
