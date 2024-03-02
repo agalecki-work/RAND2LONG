@@ -155,8 +155,12 @@ libname _stmnts clear;
 
 /* ===== Macro `_project_setup` executed  ===== */;
 
-%_project_setup;
+filename _macros "&dir_path/_macros"; /* Local macros */
+%include _macros(zzz_include);
+filename _macros clear;
+%zzz_include;
 
+%_project_setup;
 
 
 %_05map_file_create(HLong);

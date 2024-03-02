@@ -1,7 +1,7 @@
 %macro create_dictionary;
 %let tbl = %upcase(&table);
 %let keep1=;
-%if (&tbl = RLONG or &tbl = HLONG or &tbl = RSSI) %then %let keep1= wave_pattern wave_summary; 
+%if (&tbl = RLONG or &tbl = HLONG or &tbl=SLONG or &tbl = RSSI) %then %let keep1= wave_pattern wave_summary; 
 data _dictionary_init;
   set _stmnts0(keep= name ctype label clength format dispatch &keep1);
   if substr(ctype,1,1)= "A";
