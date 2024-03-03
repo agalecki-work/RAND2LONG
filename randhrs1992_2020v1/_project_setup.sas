@@ -4,7 +4,7 @@
 
 /* Declare global macro variables */
 %global repo_path repo_name prj_name dir_name;
-%global xlsx_path xlsx_name dir_path table_version;
+%global xlsx_path xlsx_name xlsx_nickname dir_path table_version;
 %global datain formats_cntlin wide_datain;
 %global fcmp_src_path;
 %global HRSpkg_path;

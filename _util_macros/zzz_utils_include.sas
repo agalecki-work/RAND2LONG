@@ -4,6 +4,10 @@
 %put  - macro `attrn_nlobs`;
 %include _macros(attrn_nlobs);
 
+/*--- ` attrn_nvars` --- */
+%put  - macro `attrn_nvars`;
+%include _macros(attrn_nvars);
+
 /*-- `varExist` */
 %put  - macro `varExist`;
 %include _macros(varExist);

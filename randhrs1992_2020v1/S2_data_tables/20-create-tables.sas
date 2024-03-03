@@ -51,10 +51,6 @@ run;
 /* Move and rename  `_base_longout` from `work` to `libout` SAS library */
  %rename_base_longout;
 
-/*--- Cleanup */
-proc datasets library=work;
-    delete _outtable _TEMPLATE_LONGOUT;
-run;
 
 /* Dictionaries */
 
@@ -62,10 +58,14 @@ libname dict "&dir_path/_05aux/&table";
 
 data _dict.&table._dict;
   set dict.&table._dict;
-  drop ctype valid_name varin; 
+  drop ctype valid_name varin dispatch; 
 run;
 
-  
+/*--- Cleanup */
+proc datasets library=work;
+    delete _outtable _TEMPLATE_LONGOUT;
+run;
+ 
   
 libname dict clear;
 %mend _20create_table;
@@ -75,21 +75,45 @@ libname dict clear;
 
 %_project_setup;
 
-libname _data " &HRSpkg_path/tables_long";
+filename _macros "&dir_path/_macros"; /* Local macros */
+%include _macros(zzz_include);
+filename _macros clear;
+%zzz_include;
+
+
+libname _data "&HRSpkg_path/tables_long";
 proc datasets library= _data kill;
 run;
 quit;
 
-libname _dict " &HRSpkg_path/dict";
+libname _dict " &HRSpkg_path/dictionaries";
 proc datasets library= _dict kill;
 run;
 quit;
 
-
-
 %_20create_table(RLong, hhid  PN wave_number);
+
 %_20create_table(HLong, hhid  wave_number subhh descending H_PICKHH PN);
 %_20create_table(Rwide, hhid  PN);
 %_20create_table(Rexit, hhid  PN);
 %_20create_table(RSSI,  hhid  PN RSSI_EPISODE);
 %_20create_table(SLong, hhid  PN wave_number);
+
+/* ===  Contents document ====*/
+
+filename fprint "&HRSPKG_path\_README.txt";
+proc printto print= fprint new;
+run;
+
+options nocenter ls =255 formdlim=" ";
+%print_contents_document;
+
+proc printto;
+run;
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 %macro zzz_include;
 %include _macros(create_dictionary);
-%**include macros(populate_stmnt);
+%include _macros(print_contents_document);
 
 %mend zzz_include;
