@@ -7,7 +7,6 @@ filename _macros "&repo_path\20-macros";
 filename _macros clear;
 
 
-
 %macro _20create_table(table, key_vars);
 %put ====> Macro `_20create_table` STARTS here;
  
@@ -98,6 +97,19 @@ quit;
 %_20create_table(Rexit, hhid  PN);
 %_20create_table(RSSI,  hhid  PN RSSI_EPISODE);
 %_20create_table(SLong, hhid  PN wave_number);
+
+/* Manualy modify data labels */
+proc datasets library =_DATA;
+ modify slong_table (label = "Spouse `S[w]` variables (&sysdate)");
+ modify rlong_table (label = "Respondent `R[w]` variables (&sysdate)");
+ modify rexit_table (label = "Exit `RE` variables (&sysdate)");
+ modify rwide_table (label = "Time-invariant `RA` variables (&sysdate)");
+ modify rssi_table (label  = "Respondent SSI/SSDI episode variables (&sysdate)");
+ modify hlong_table (label = "Household `H[w]` variables (&sysdate)");
+ modify _RANDFMTS_LONG (label = "CNTLIN dataset with info on SAS formats for all tables (&sysdate)");
+quit;
+
+
 
 /* ===  Contents document ====*/
 
