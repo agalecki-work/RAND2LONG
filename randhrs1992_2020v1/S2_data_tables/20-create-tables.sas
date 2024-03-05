@@ -100,12 +100,12 @@ quit;
 
 /* Manualy modify data labels */
 proc datasets library =_DATA;
- modify slong_table (label = "Spouse `S[w]` variables (&sysdate)");
- modify rlong_table (label = "Respondent `R[w]` variables (&sysdate)");
- modify rexit_table (label = "Exit `RE` variables (&sysdate)");
+ modify slong_table (label = "Spouse `S[w]` RAND variables (&sysdate)");
+ modify rlong_table (label = "Respondent `R[w]` RAND variables (&sysdate)");
+ modify rexit_table (label = "Exit `RE` RAND variables (&sysdate)");
  modify rwide_table (label = "Time-invariant `RA` variables (&sysdate)");
  modify rssi_table (label  = "Respondent SSI/SSDI episode variables (&sysdate)");
- modify hlong_table (label = "Household `H[w]` variables (&sysdate)");
+ modify hlong_table (label = "Household `H[w]` RAND variables (&sysdate)");
  modify _RANDFMTS_LONG (label = "CNTLIN dataset with info on SAS formats for all tables (&sysdate)");
 quit;
 
@@ -113,7 +113,7 @@ quit;
 
 /* ===  Contents document ====*/
 
-filename fprint "&HRSPKG_path\_README.txt";
+filename fprint "&HRSPKG_path\tables_long\_README.txt";
 proc printto print= fprint new;
 run;
 
