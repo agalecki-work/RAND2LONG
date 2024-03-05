@@ -1,4 +1,4 @@
-%macro print_readme_tables_document;
+%macro print_readme_dict_document;
 /* Macro invoked  `20-create-tables.sas` and tested using `21-test-contents.sas`*/
 %local tnobs tnvars;
 %let tnobs = %attrn_nlobs(&datain, libname = libin);
@@ -63,4 +63,4 @@ var varnum /*libname*/ memname /* memtype*/ name type length format label; * nam
 by memname;
 run;
 
-%mend print_readme_tables_document;
+%mend print_readme_dict_document;

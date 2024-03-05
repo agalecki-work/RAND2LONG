@@ -33,8 +33,8 @@ run;
 filename fx clear;
 
 /*--- README_tables file -----*/
-filename fx2 "21-test_README_tables.log";
-proc printto print= fx2 new;
+filename fx "21-test_README_tables.log";
+proc printto print= fx new;
 run;
 
 
@@ -44,7 +44,22 @@ title "Filename: README.txt in `./tables_long` subfolder";
 
 proc printto;
 run;
-filename fx2 clear;
+filename fx clear;
+
+/*--- README_contents_tables file -----*/
+filename fx "21-test_contents_tables.log";
+proc printto print= fx new;
+run;
+
+
+title "Filename: TABLES_CONTENTS.txt in `./tables_long` subfolder";
+
+%print_contents_tables_document;
+
+proc printto;
+run;
+filename fx clear;
+
 
 endsas;
 
