@@ -111,17 +111,17 @@ quit;
 
 
 
-/* ===  Contents document ====*/
+/* ===  readme/Contents documents ====*/
 
-filename fprint "&HRSPKG_path\tables_long\_README.txt";
-proc printto print= fprint new;
-run;
 
-options nocenter ls =255 formdlim=" ";
-%print_contents_document;
+options nocenter ls =255 formdlim=' ';
 
-proc printto;
-run;
+%let xpath = &HRSpkg_path;
+%let extn =txt;
+
+%prep_aux_data2print;
+
+
 
 
 
