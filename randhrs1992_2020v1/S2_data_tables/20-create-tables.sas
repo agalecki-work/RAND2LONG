@@ -57,6 +57,8 @@ libname dict "&dir_path/_05aux/&table";
 
 data _dict.&table._dict;
   set dict.&table._dict;
+ * length memname $32;
+ * memname = "table_"||strip("&table");
   drop ctype valid_name varin dispatch; 
 run;
 
@@ -109,6 +111,14 @@ proc datasets library =_DATA;
  modify _RANDFMTS_LONG (label = "CNTLIN dataset with info on SAS formats for all tables (&sysdate)");
 quit;
 
+proc datasets library =_DICT;
+ modify slong_dict (label = "Dictionary for SLONG_TABLE (&sysdate)");
+ modify rlong_dict (label = "Dictionary for RLONG_TABLE (&sysdate)");
+ modify rexit_dict (label = "Dictionary for REXIT_TABLE (&sysdate)");
+ modify rwide_dict (label = "Dictionary for RWIDE_TABLE (&sysdate)");
+ modify rssi_dict (label  = "Dictionary for RSSI_TABLE (&sysdate)");
+ modify hlong_dict (label = "Dictionary for HLONG_TABLE (&sysdate)");
+quit;
 
 
 /* ===  readme/Contents documents ====*/
@@ -119,7 +129,9 @@ options nocenter ls =255 formdlim=' ';
 %let xpath = &HRSpkg_path;
 %let extn =txt;
 
-%prep_aux_data2print;
+%let project_title = Project name: Transpose RAND Longitudinal Data (%upcase(&datain)) into long format;
+
+%print_docs;
 
 
 

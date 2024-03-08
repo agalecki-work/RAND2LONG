@@ -16,11 +16,11 @@ filename _macros clear;
 
 /* ===  Contents documents ====*/
 
-
 options nocenter ls =255 formdlim=' ';
 
 %let xpath = &dir_path/21-tests;
 %let extn =log;
+%let project_title = Project name: Transpose RAND Longitudinal Data (%upcase(&datain)) into long format;
 
-%prep_aux_data2print;
+%print_docs;
 

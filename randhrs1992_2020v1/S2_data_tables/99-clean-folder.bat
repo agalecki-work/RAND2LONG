@@ -11,7 +11,7 @@ del *.sas7bdat /s
 del *.html /s
 del *.htm
 del *.inc /s
-del *.log 
+del *.log /s
 del *.lst
 del *.html
 timeout /t 5

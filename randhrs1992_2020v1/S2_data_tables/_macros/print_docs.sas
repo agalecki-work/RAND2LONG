@@ -1,4 +1,4 @@
-%macro prep_aux_data2print;
+%macro print_docs;
 /* Auxiliary macro creates summary datasets used by `print` macros */ 
 
 data dt_summ;
@@ -26,13 +26,13 @@ run;
 
 /*================*/
 /*--- README_MAIN file -----*/
-filename fx "&xpath/README.&extn";
+filename fx "&xpath/_README.&extn";
 proc printto print= fx new;
 run;
 
 
-title "Filename: README.txt located in the main folder";
-title2 "File created on &sysdate";
+title  "&project_title";
+
 %print_README_main_document;
 
 proc printto;
@@ -40,13 +40,11 @@ run;
 filename fx clear;
 
 
-/*--- README_tables file -----*/
-filename fx "&xpath/tables_long/README.&extn";
+/*--- README_tables file in table_long subfolder -----*/
+filename fx "&xpath/tables_long/_README.&extn";
 proc printto print= fx new;
 run;
 
-
-title "Filename: README.txt in `./tables_long` subfolder";
 
 %print_README_tables_document;
 
@@ -54,37 +52,36 @@ proc printto;
 run;
 filename fx clear;
 
-/*--- README_dict file -----*/
-filename fx "&xpath/dictionaries/README.&extn";
+/*--- README_dict file in `./dictionaries` subfolder-----*/
+filename fx "&xpath/dictionaries/_README.&extn";
 proc printto print= fx new;
 run;
-
-
-title "Filename: README.txt in `./dictionaries` subfolder";
-
 %print_README_dict_document;
 
 proc printto;
 run;
 filename fx clear;
 
-
-/*--- README_contents_tables file -----*/
-filename fx "&xpath/tables_long/CONTENTS.&extn";
+%macro skip;
+/*--- _contents file in `/tables_long` subfolder -----*/
+filename fx "&xpath/tables_long/_CONTENTS.&extn";
 proc printto print= fx new;
 run;
-
-
-** title "Filename: CONTENTS.txt in `./tables_long` subfolder";
-title;
 %print_contents_tables_document;
 
 proc printto;
 run;
 filename fx clear;
+%mend skip;
 
+/*--- _details file in `/_dictionaries` file -----*/
+filename fx "&xpath/dictionaries/_DETAILS.&extn";
+proc printto print= fx new;
+run;
+%print_contents_dict_document;
 
-
-
-%mend prep_aux_data2print;
+proc printto;
+run;
+filename fx clear;
+%mend print_docs;
 
