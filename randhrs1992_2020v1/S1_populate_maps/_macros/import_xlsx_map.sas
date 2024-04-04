@@ -38,8 +38,7 @@ alter table _temp_
          /* wave_pattern char(40) format = $40., */
          /* wave_summary char(40) format = $40., */
          dispatch char(100) format = $100.
-         ;
-         
+         ;       
 quit;
 
 /*=== RSSI table ====*/
@@ -70,6 +69,19 @@ alter table _temp_
     hrs_wave&hrswv_max char(40) format = $40.;
 quit;
 %end;
+
+/*=== WIDE tables only ====*/
+%let tableup =%upcase(&table); 
+%if (&tableup = RWIDE or &tableup = REXIT)  %then %do;
+%put --- IF RWIDE or REXIT : STEP 3A;
+
+proc sql noprint;
+alter table _temp_
+  modify
+    base char(200) format = $200.;
+quit;
+%end;
+
 
 %put --- Macro `import_xlsx_map` for table &table  (sanitation);
 
