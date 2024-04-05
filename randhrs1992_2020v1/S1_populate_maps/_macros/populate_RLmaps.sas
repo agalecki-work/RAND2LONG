@@ -72,6 +72,8 @@ if countx >0 and cp0 = "*" then do;
    end; /* do i */
 
 end; /* if countx >0 and cp0 = "*" */
+
+if find(wave_pattern, "[w]", "i") then wave_pattern = compress(wave_pattern); /* Remove blanks */
  
  /* Populate `wave_summary`  */
   
