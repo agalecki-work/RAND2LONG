@@ -41,8 +41,7 @@ data _base_longout(label = "%upcase(&table)_table created from &wide_datain (dat
 run;
 
 %append_outtable (libin.&datain);   /* RAND data -> _base_longout */
- %put ====> Macro `_20create_table` ENDS here;
- 
+
 proc sort data = _base_longout nodupkey;
 by &key_vars;   
 run;
@@ -69,6 +68,8 @@ run;
  
   
 libname dict clear;
+ %put ====> Macro `_20create_table` ENDS here;
+ 
 %mend _20create_table;
 
 
@@ -87,10 +88,10 @@ proc datasets library= _data kill;
 run;
 quit;
 
-libname _dict " &HRSpkg_path/dictionaries";
-proc datasets library= _dict kill;
-run;
-quit;
+*libname _dict " &HRSpkg_path/dictionaries";
+*proc datasets library= _dict kill;
+*run;
+*quit;
 
 %_20create_table(RLong, hhid  PN wave_number);
 
@@ -111,6 +112,8 @@ proc datasets library =_DATA;
  modify _RANDFMTS_LONG (label = "CNTLIN dataset with info on SAS formats for all tables (&sysdate)");
 quit;
 
+
+%macro skip;
 proc datasets library =_DICT;
  modify slong_dict (label = "Dictionary for SLONG_TABLE (&sysdate)");
  modify rlong_dict (label = "Dictionary for RLONG_TABLE (&sysdate)");
@@ -119,7 +122,7 @@ proc datasets library =_DICT;
  modify rssi_dict (label  = "Dictionary for RSSI_TABLE (&sysdate)");
  modify hlong_dict (label = "Dictionary for HLONG_TABLE (&sysdate)");
 quit;
-
+%mend skip;
 
 /* ===  readme/Contents documents ====*/
 
