@@ -53,6 +53,8 @@ run;
 filename fx clear;
 
 /*--- README_dict file in `./dictionaries` subfolder-----*/
+
+%macro skip;
 filename fx "&xpath/dictionaries/_README.&extn";
 proc printto print= fx new;
 run;
@@ -61,6 +63,7 @@ run;
 proc printto;
 run;
 filename fx clear;
+%mend skip;
 
 %macro skip;
 /*--- _contents file in `/tables_long` subfolder -----*/
@@ -75,7 +78,7 @@ filename fx clear;
 %mend skip;
 
 /*--- _details file in `/_dictionaries` file -----*/
-filename fx "&xpath/dictionaries/_DETAILS.&extn";
+filename fx "&xpath/dictionaries.&extn";
 proc printto print= fx new;
 run;
 %print_contents_dict_document;

@@ -1,5 +1,5 @@
 
-options mprint;
+options mprint nodate ls =255;
 
 /* ==== Execution starts ==== */
 %_project_setup;
@@ -15,12 +15,14 @@ filename _macros clear;
 
 
 /* ===  Contents documents ====*/
+options nocenter ls =255 formdlim=' ';
+
 
 options nocenter ls =255 formdlim=' ';
 
 %let xpath = &dir_path/21-tests;
 %let extn =log;
-%let project_title = Project name: Transpose RAND Longitudinal Data (%upcase(&datain)) into long format;
+%let project_title = Project name: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables stored in a long format;
 
 %print_docs;
 

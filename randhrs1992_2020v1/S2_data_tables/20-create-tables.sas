@@ -1,5 +1,5 @@
 
-options nocenter mprint;
+options nocenter mprint nodate;
 
 
 filename _macros "&repo_path\20-macros";
@@ -129,7 +129,7 @@ options nocenter ls =255 formdlim=' ';
 %let xpath = &HRSpkg_path;
 %let extn =txt;
 
-%let project_title = Project name: Transpose RAND Longitudinal Data (%upcase(&datain)) into long format;
+%let project_title = Project name: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables  stored in a long format;
 
 %print_docs;
 

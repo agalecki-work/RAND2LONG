@@ -10,9 +10,24 @@ run;
 
 
 title "Data tables: Overview";
-proc print data=dt_summ;
+
+data dt_summ0;
+ set dt_summ;
+  if memname in ("REXIT_TABLE", "RWIDE_TABLE") then dtset=0;
+    else dtset = 1;
+  if memname = "_RANDFMTS_LONG" then delete;
+run;
+
+proc sort data=dt_summ0;
+by descending dtset memname;
+run;
+
+proc print data=dt_summ0;
   var  memname  nobs nvar filesize memlabel;
 run;
+
+
+
 
 data _dt_nms_(keep=name dtset);
   set dict_summ (keep = memname);
@@ -20,7 +35,6 @@ data _dt_nms_(keep=name dtset);
     else dtset = 1;
   rename memname=name;
 run;
-
 
 /*--- dt_list1 */
 
@@ -42,7 +56,7 @@ quit;
 /*--- dt_list0 */    
 data _dt0;
  set _dt_nms_;
- if dtset=1;
+ if dtset=0;
 run;
 
 proc sql noprint;
