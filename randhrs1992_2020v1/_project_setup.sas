@@ -7,9 +7,11 @@
 %global xlsx_path xlsx_name xlsx_nickname dir_path table_version;
 %global datain formats_cntlin wide_datain;
 %global fcmp_src_path;
-%global HRSpkg_path;
+%global output_path HRSpkg_path;
 
-%let HRSpkg_path=C:\tempout\HRS_package;
+
+%let output_path = C:\tempout;
+%let HRSpkg_path=&output_path\HRS_package;
 
 %let prj_path = &repo_path\&prj_name;
 
@@ -33,6 +35,7 @@ libname LIBIN "C:\temp" access=readonly;
 %put --- Global macro vars defined in `project_setup.inc`;
 %put repo_version    := &repo_version;
 %put repo_path       := &repo_path;
+%put output_path     := &output_path;
 %put HRSpkg_path     := &HRSpkg_path;
 %put prj_name        := &prj_name;
 %put;

@@ -26,7 +26,7 @@ run;
 title;
 data _null_;
  file print;
- put "For more details about the contents of the created data tables see `dictionaries.txt`  file";
+ put "For more details about the contents of the created data tables see `dictionaries.txt`  file in main folder";
 run;
 
 %mend print_readme_tables_document;

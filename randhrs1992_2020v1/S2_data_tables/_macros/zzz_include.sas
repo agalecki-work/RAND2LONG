@@ -18,11 +18,11 @@
 %put - macro print_readme_tables_document;
 %include _macros(print_readme_tables_document);
 
-%put - macro print_readme_dict_document;
-%include _macros(print_readme_dict_document);
+%*put - macro print_readme_dict_document;
+%*include _macros(print_readme_dict_document);
 
-%put - macro print_contents_dict_document;
-%include _macros(print_contents_dict_document);
+%*put - macro print_contents_dict_document;
+%*include _macros(print_contents_dict_document);
 
 %*put - macro print_contents_tables_document;
 %*include _macros(print_contents_tables_document);

@@ -88,10 +88,10 @@ proc datasets library= _data kill;
 run;
 quit;
 
-*libname _dict " &HRSpkg_path/dictionaries";
-*proc datasets library= _dict kill;
-*run;
-*quit;
+libname _dict " &output_path/dictionaries";
+proc datasets library= _dict kill;
+run;
+quit;
 
 %_20create_table(RLong, hhid  PN wave_number);
 
@@ -113,7 +113,6 @@ proc datasets library =_DATA;
 quit;
 
 
-%macro skip;
 proc datasets library =_DICT;
  modify slong_dict (label = "Dictionary for SLONG_TABLE (&sysdate)");
  modify rlong_dict (label = "Dictionary for RLONG_TABLE (&sysdate)");
@@ -122,17 +121,16 @@ proc datasets library =_DICT;
  modify rssi_dict (label  = "Dictionary for RSSI_TABLE (&sysdate)");
  modify hlong_dict (label = "Dictionary for HLONG_TABLE (&sysdate)");
 quit;
-%mend skip;
 
 /* ===  readme/Contents documents ====*/
 
 
-options nocenter ls =255 formdlim=' ';
+options nocenter ls =255 formdlim=' ' nodate;
 
 %let xpath = &HRSpkg_path;
 %let extn =txt;
 
-%let project_title = Project name: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables  stored in a long format;
+%let project_title = Project: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables  stored in a long format;
 
 %print_docs;
 

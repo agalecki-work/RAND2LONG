@@ -26,9 +26,6 @@ proc print data=dt_summ0;
   var  memname  nobs nvar filesize memlabel;
 run;
 
-
-
-
 data _dt_nms_(keep=name dtset);
   set dict_summ (keep = memname);
   if memname in ("REXIT_DICT", "RWIDE_DICT") then dtset=0;
