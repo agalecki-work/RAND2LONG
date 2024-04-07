@@ -22,7 +22,7 @@ options nocenter ls =255 formdlim=' ';
 
 %let xpath = &dir_path/21-tests;
 %let extn =log;
-%let project_title = Project name: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables stored in a long format;
+%let project_title = Project: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables stored in a long format;
 
 %print_docs;
 
