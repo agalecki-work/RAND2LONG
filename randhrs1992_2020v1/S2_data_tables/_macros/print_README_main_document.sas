@@ -13,7 +13,7 @@ data _null_;
   put "More information available in the following files:" /
       "  - project_guide.docx " /
       '  - dictionaries.txt' /
-      '  - ./tables_long/README.txt' /
+      '  - ./data_tables/README.txt' /
       ;
   put "Project release info: &table_version (&xlsx_nickname)" /;
 

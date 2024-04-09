@@ -26,7 +26,7 @@ proc freq data = lib.&data;
 tables R_YR / missing; 
 run;
 
-Title2 "All missing data combined";
+Title2 "All missing values combined";
 proc freq data = lib.&data;
 tables R_YR; 
 run;

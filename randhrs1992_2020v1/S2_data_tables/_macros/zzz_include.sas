@@ -22,9 +22,9 @@
 %*include _macros(print_readme_dict_document);
 
 %*put - macro print_contents_dict_document;
-%*include _macros(print_contents_dict_document);
+%include _macros(print_contents_dict_document);
 
-%*put - macro print_contents_tables_document;
+%put - macro print_contents_tables_document;
 %*include _macros(print_contents_tables_document);
 %put ---- Macro zzz_include ENDS here;
 %mend zzz_include;

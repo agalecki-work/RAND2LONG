@@ -83,7 +83,7 @@ filename _macros clear;
 %zzz_include;
 
 
-libname _data "&HRSpkg_path/tables_long";
+libname _data "&HRSpkg_path/data_tables";
 proc datasets library= _data kill;
 run;
 quit;
@@ -130,8 +130,7 @@ options nocenter ls =255 formdlim=' ' nodate;
 %let xpath = &HRSpkg_path;
 %let extn =txt;
 
-%let project_title = Project: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables  stored in a long format;
-
+%let project_title = Project: Convert RAND Longitudinal Data (%upcase(&datain)) into a small set of data tables stored in a long format;
 %print_docs;
 
 

@@ -1,5 +1,6 @@
-options source;
+options source mprint;
 %global fn;
+
 %macro mx;
 %put  ====== &fn ======;
 filename fn "&fn"; 

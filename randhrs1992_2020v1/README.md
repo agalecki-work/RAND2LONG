@@ -9,15 +9,17 @@ After downloading `RAND2LONG` repository modify:
 
 * `repo_path` macro variables in `autoexec.sas` file
 * `xlsx_nickname`, `xlsx_date`, `xlsx_path`, `output_path` macro variables in `project_setup.sas` file.
-* path to LIBIN library in `project_setup.sas` file.
+* path to `LIBIN` library in `project_setup.sas` file.
 
 Structure of the output folder is as follows:
+
+Note: Subfolders `HRS_package` and `HRS_package\data_tables` need to be created before running the scripts
 
 ```
 C:\OUTPUT_FOLDER
 +---dictionaries
 \---HRS_package
-    \---tables_long
+    \---data_tables
 ```
 
 After executing scripts in this repository the output folder will be populated as follows:
@@ -37,7 +39,7 @@ C:\OUTPUT_FOLDER
     |   _README.txt
     |   project_guide.docx (will be added manually)
     |
-    \---tables_long
+    \---data_tables
             hlong_table.sas7bdat
             rexit_table.sas7bdat
             rlong_table.sas7bdat

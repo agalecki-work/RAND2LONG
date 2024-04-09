@@ -41,7 +41,7 @@ filename fx clear;
 
 
 /*--- README_tables file in table_long subfolder -----*/
-filename fx "&xpath/tables_long/_README.&extn";
+filename fx "&xpath/data_tables/_README.&extn";
 proc printto print= fx new;
 run;
 
@@ -77,6 +77,7 @@ run;
 filename fx clear;
 %mend skip;
 
+
 /*--- _details file in `/_dictionaries` file -----*/
 filename fx "&xpath/dictionaries.&extn";
 proc printto print= fx new;
@@ -86,5 +87,6 @@ run;
 proc printto;
 run;
 filename fx clear;
+
 %mend print_docs;
 
