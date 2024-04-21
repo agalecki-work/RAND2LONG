@@ -17,7 +17,7 @@
 
 /*------ Excel file multiple maps ------*/
 %let xlsx_nickname = _1992_2020v1_maps;   /* _1992_2020v1_maps or test3_maps */
-%let xlsx_date =05APR2024;
+%let xlsx_date = 20APR2024;
 %let xlsx_path = C:\temp;
 %let xlsx_name =&xlsx_nickname&xlsx_date;       /* === Full xlsx name with mapping info ===*/
 %let table_version = &repo_version-&xlsx_date;  /* Auxiliary */

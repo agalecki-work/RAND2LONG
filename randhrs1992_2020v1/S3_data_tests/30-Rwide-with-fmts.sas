@@ -12,8 +12,9 @@ run;
 
 Title "Table: &data.. Selected vars (n=50)";
 proc print data = lib.&data(obs=50);
-var  HHID PN HACOHORT;
+var  HHID PN HACOHORT INW_SUMMARY;
 run;
+
 
 
 Title "Table: &data.. PROC FREQ";

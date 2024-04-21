@@ -82,12 +82,21 @@ data _null_;
   put "/* List of variables to be read from input dataset */";
 run;
 
+%if %upcase(&table) = RWIDE %then %do;
+ data _null_;
+  file map_file mod ;
+  put '_ALL_';
+ run;
+ %end;
+%else
+  %do;
+
 data _null_;
   file map_file mod ;
   set _dictionary;
   if varin =1 then put @3 name  @45 '/* _' +(-1) varnum '*/';
 run;
-
+ %end; 
 
 data _null_;
   file map_file mod ;
@@ -138,6 +147,7 @@ run;
 
 data _null_;
   file map_file mod;
+  
   put / '%macro append_outtable(datain);';
   put "/*  Table &table: Macro creates and appends `_outtable` data */;" ;
   put "/*  Depends on table type through `process_data` macro */";

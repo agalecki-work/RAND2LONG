@@ -118,7 +118,6 @@ run;
 
 
 
-
 /* Macro `process_data` appended to `map_file`*/
 data _null_;
   set &table._stmnts;

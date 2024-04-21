@@ -1,6 +1,9 @@
 
 options nocenter mprint nodate;
 
+/* Auxiliary user defined macros are loaded */
+filename  umacros "20-umacros.sas";     
+%include  umacros;  /* `rwide_summary_vars` macro */
 
 filename _macros "&repo_path\20-macros";
 %include _macros(zzz_20include);
