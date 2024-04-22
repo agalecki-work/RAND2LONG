@@ -74,35 +74,30 @@ data _null_;
   put /;
 run;
 
-/* Readvar1_list */
+/* Readvar1_list _ALL_*/
 
+%macro skip;
 data _null_;
   file map_file mod ;
   put / '%macro readvar1_list;'; 
   put "/* List of variables to be read from input dataset */";
+  put "_ALL_";
+  
 run;
 
-%if %upcase(&table) = RWIDE %then %do;
+%if RWIDE = RWIDE %then %do;
  data _null_;
   file map_file mod ;
   put '_ALL_';
  run;
- %end;
-%else
-  %do;
+%end;
 
-data _null_;
-  file map_file mod ;
-  set _dictionary;
-  if varin =1 then put @3 name  @45 '/* _' +(-1) varnum '*/';
-run;
- %end; 
 
 data _null_;
   file map_file mod ;
   put '%mend readvar1_list;';   
 run;
-
+%mend skip;
 
 /*--- Keep_varlist ---*/
 
@@ -153,7 +148,7 @@ data _null_;
   put "/*  Depends on table type through `process_data` macro */";
   put ' data _outtable;';
   put '  if 0 then set _template_longout;';
-  put '   set &datain(keep = %' 'readvar1_list %' 'readvar2_list);';
+  put '   set &datain;';
   put '   %' 'process_data;';
   put '   keep %' 'keep_varlist;';
   put ' run;';

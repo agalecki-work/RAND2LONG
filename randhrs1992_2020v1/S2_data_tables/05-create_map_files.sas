@@ -86,12 +86,14 @@ run;
 %put_init_macro_stmnts;
 
 /* Readvar2_list */
+%macro skip;
 
 data _null_;
   file map_file mod ;
   put / '%macro readvar2_list;'; 
   put "/* List of variables to be read from input dataset */";
 run;
+
 
 data _null_;
   file map_file mod ;
@@ -109,13 +111,12 @@ data _null_;
  end;
 run;
 
-
 data _null_;
   file map_file mod ;
   put '%mend readvar2_list;'; 
   put;
 run;
-
+%mend skip;
 
 
 /* Macro `process_data` appended to `map_file`*/
