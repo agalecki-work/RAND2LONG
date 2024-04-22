@@ -12,6 +12,6 @@
    inwc = strip(put(inwi, 8.));
    substr(inw_summary, i) = inwc;
  end;
- drop i inwi inwc;
+ * drop i inwi inwc;
  
 %mend  rwide_summary_vars;

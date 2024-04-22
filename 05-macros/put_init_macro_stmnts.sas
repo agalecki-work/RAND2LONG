@@ -74,31 +74,6 @@ data _null_;
   put /;
 run;
 
-/* Readvar1_list _ALL_*/
-
-%macro skip;
-data _null_;
-  file map_file mod ;
-  put / '%macro readvar1_list;'; 
-  put "/* List of variables to be read from input dataset */";
-  put "_ALL_";
-  
-run;
-
-%if RWIDE = RWIDE %then %do;
- data _null_;
-  file map_file mod ;
-  put '_ALL_';
- run;
-%end;
-
-
-data _null_;
-  file map_file mod ;
-  put '%mend readvar1_list;';   
-run;
-%mend skip;
-
 /*--- Keep_varlist ---*/
 
 %let nkeep = %attrn_nlobs(_dictionary);
