@@ -22,10 +22,10 @@ run;
 
 /* By default opt = S, so SHORT version of _mrgd_dupkey is created */
 %if (&opt = S) %then %do;
-data _freq_dupkey_;
- set _freq_dupkey_;
- if count > 1; 
-run;
+  data _freq_dupkey_;
+    set _freq_dupkey_;
+    if count > 1; 
+  run;
 %end;
 
 data &out;
@@ -34,7 +34,16 @@ data &out;
   if in2;
   drop _tempone_;
 run;
-%put : Option := &opt. If Option = S verify whether number of observations in _mrgd_dupkey_ data  is 0;
+%put : Option := &opt. If Option = S verify whether number of observations in &out data  is 0;
+
+
+%if %sysfunc(find(&out, .)) eq 0 %then %let out = work.&out;;
+%let libnm = %scan(&out,1, %str(.) );
+%let dtnm   = %scan(&out,2, %str(.) );
+
+%let nobs = %attrn_nlobs(&dtnm, libname = &libnm);
+%if (&nobs ne 0) %then %put WARNING: Duplicate keys &keys (n= &nobs) in &data dataset detected;; 
+
 %put : ===> checkdupkey macro for %UPCASE(&data) dataset ENDS;
 
 %mend checkdupkey;

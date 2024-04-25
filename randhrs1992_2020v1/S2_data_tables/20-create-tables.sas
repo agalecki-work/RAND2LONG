@@ -43,14 +43,19 @@ data _base_longout(label = "%upcase(&table)_table created from &wide_datain (dat
   set _template_longout;
 run;
 
-%append_outtable (libin.&datain);   /* RAND data -> _base_longout */
+%append_outtable(libin.&datain);   /* RAND data -> _base_longout */
 
 proc sort data = _base_longout nodupkey;
 by &key_vars;   
 run;
 
-/* Move and rename  `_base_longout` from `work` to `libout` SAS library */
+
+/* Move and rename  `_base_longout` from `work` to `_data` SAS library */
  %rename_base_longout;
+
+%let dtname = _data.&table._table;
+%put == &dtname;
+%checkdupkey(&dtname, &key_vars, keepall = N);
 
 
 /* Dictionaries */
@@ -85,31 +90,36 @@ filename _macros "&dir_path/_macros"; /* Local macros */
 filename _macros clear;
 %zzz_include;
 
+%checkdupkey(libin.&datain, hhid pn , keepall = N );
+
+
 
 libname _data "&HRSpkg_path/data_tables";
 proc datasets library= _data kill;
 run;
 quit;
 
-libname _dict " &output_path/dictionaries";
+libname _dict "&output_path/dictionaries";
 proc datasets library= _dict kill;
 run;
 quit;
 
+
+
 %_20create_table(RLong, hhid  PN wave_number);
 
-%_20create_table(HLong, hhid  wave_number subhh descending H_PICKHH PN);
+%_20create_table(HLong, hhid  subhh studyyr);
 %_20create_table(Rwide, hhid  PN);
 %_20create_table(Rexit, hhid  PN);
 %_20create_table(RSSI,  hhid  PN RSSI_EPISODE);
-%_20create_table(SLong, hhid  PN wave_number);
+%_20create_table(SLong, hhid  PN studyyr);
 
 /* Manualy modify data labels */
 proc datasets library =_DATA;
  modify slong_table (label = "Spouse `S[w]` RAND variables (&sysdate)");
  modify rlong_table (label = "Respondent `R[w]` RAND variables (&sysdate)");
  modify rexit_table (label = "Exit `RE` RAND variables (&sysdate)");
- modify rwide_table (label = "Time-invariant `RA` variables (&sysdate)");
+ modify rwide_table (label = "Wave-invariant `RA` variables (&sysdate)");
  modify rssi_table (label  = "Respondent SSI/SSDI episode variables (&sysdate)");
  modify hlong_table (label = "Household `H[w]` RAND variables (&sysdate)");
  modify _RANDFMTS_LONG (label = "CNTLIN dataset with info on SAS formats for all tables (&sysdate)");
@@ -124,6 +134,7 @@ proc datasets library =_DICT;
  modify rssi_dict (label  = "Dictionary for RSSI_TABLE (&sysdate)");
  modify hlong_dict (label = "Dictionary for HLONG_TABLE (&sysdate)");
 quit;
+
 
 /* ===  readme/Contents documents ====*/
 
