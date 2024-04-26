@@ -1,3 +1,4 @@
+options ls = 150;
 
 /*--- Using SAS formats */
 
@@ -23,15 +24,17 @@ data rsh;
 run;
 
 
-
 proc sort data =rsh;
  by hhid pn studyyr;
 run;
 
-data mrg5;
+data out.mrg5_tables;
  merge rsh lib.rexit_table lib.rwide_table;
   by hhid pn;
 run;
 
+
+proc print data=out.mrg5_tables(obs=2500);
+run;
 
 
