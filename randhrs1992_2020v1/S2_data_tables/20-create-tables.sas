@@ -108,7 +108,7 @@ quit;
 
 %_20create_table(RLong, hhid  PN wave_number);
 
-%_20create_table(HLong, hhid  subhh studyyr);
+%_20create_table(HLong, hhid  PN studyyr);
 %_20create_table(Rwide, hhid  PN);
 %_20create_table(Rexit, hhid  PN);
 %_20create_table(RSSI,  hhid  PN RSSI_EPISODE);

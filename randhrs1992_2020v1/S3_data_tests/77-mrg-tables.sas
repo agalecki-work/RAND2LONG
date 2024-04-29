@@ -1,4 +1,4 @@
-options ls = 150;
+options ls = 150 nocenter;
 
 /*--- Using SAS formats */
 
@@ -6,32 +6,9 @@ options ls = 150;
 proc format lib = WORK cntlin = lib._RANDfmts_long;
 run;
 
-
-data rs;
- merge lib.rlong_table lib.slong_table;
-    by hhid pn studyyr;
-run;
-
-
-/*--- Prep for merging with hlong_table ---*/
-
-proc sort data=rs;
-  by h_hhidc subhh studyyr; /* hhidc */
-run;
-
-proc sort data= lib.hlong_table out = hlong_table;
-  by h_hhidc subhh studyyr; /* hhidc */
-run;
- 
-/* RLONG, SLONG and HLONG merged (one to many) */
 data rsh;
-  merge hlong_table rs;
-  by h_hhidc subhh studyyr; /* hhidc */
-run;
-
-/* Prepare to merge with REXIT and RWIDE tables */
-proc sort data =rsh;
- by hhid pn studyyr;
+ merge lib.rlong_table lib.slong_table lib.hlong_table ;
+    by hhid pn studyyr;
 run;
 
 data out.mrg5_tables;
@@ -44,8 +21,9 @@ run;
 
 
 proc print data=out.mrg5_tables(obs=500);
-var  hhid pn  H2IFIRAW H2INPOVAD;
+var  hhid pn studyyr S_HHIDPN R_BPPULS H_IFIRAW H_INPOVAD S_ACGTOT READL5H RABDATE INW_SUMMARY;
 format _all_; /* Formats ignored */
+format RABDATE  mmddyy8.;
 run;
 
 
