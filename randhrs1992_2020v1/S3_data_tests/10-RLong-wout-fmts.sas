@@ -24,7 +24,7 @@ run;
 
 Title "Table: &data.. Selected hhids";
 proc print data = lib.&data;
-var  HHID PN SUBHH WAVE_NUMBER HACOHORT STUDYYR R_HECOV3 R_YR;
+var  HHID PN WAVE_NUMBER HACOHORT STUDYYR R_HECOV3 R_YR;
 where hhid in  ('010533','500121', '208867');
 run;
 

@@ -11,7 +11,7 @@ run;
 
 Title "Table: &data.. Selected HHIDs.";
 proc print data = lib.&data;
-var  HHID WAVE_NUMBER H_HHIDC subhh h_hhid  STUDYYR  H_ITOT2 H_HHRESP H_CHILD;
+var  HHID WAVE_NUMBER H_HHIDC  h_hhid  STUDYYR  H_ITOT2 H_HHRESP H_CHILD;
  where hhid in  ('010533','500121', '208867');
 run;
 

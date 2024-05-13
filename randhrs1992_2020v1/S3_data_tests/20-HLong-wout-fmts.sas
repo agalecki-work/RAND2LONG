@@ -24,7 +24,7 @@ proc print data=contents;
 var varnum name type format nobs;;
 run;
 
-Title "Number of rows (subhh) per wave/studyyr";
+Title "Number of rows per wave/studyyr";
 proc freq data = lib.&data;
 table wave_number /nopercent norow nocol;
 table studyyr;
@@ -41,7 +41,7 @@ run;
 
 Title "Table: &data. Selected HHIDs for all waves";
 proc print data = lib.&data;
-var  HHID WAVE_NUMBER H_HHIDC subhh h_hhid  /*H_OHRSHH H_PICKHH */
+var  HHID WAVE_NUMBER H_HHIDC h_hhid  /*H_OHRSHH H_PICKHH */
   H_ITOT2 /* H_ATOTB */ H_CHILD H_HHRESP;
  where hhid in  ('010533','500121', '208867');
 run;
