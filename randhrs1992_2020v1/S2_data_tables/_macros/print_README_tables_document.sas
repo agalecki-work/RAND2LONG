@@ -10,7 +10,7 @@ Title "&project_title";
 title;
 data _null_;
   file print;
-  put "Filenmae: `README.txt` in `./tables_long` subfolder" /;
+  put "Filenmae: `_README.txt` in `./data_tables` subfolder" /;
   put "&project_title";
   put / "Datasets used as input are available at HRS website https://hrs.isr.umich.edu/data-products";
   put "  - RAND Dataset: %upcase(&DATAIN) (nobs = &tnobs, nvars = &tnvars)" ;
@@ -18,7 +18,7 @@ data _null_;
   put;
 run;
 
-title "Long tables (output): Overview";
+title "Data tables (output): Overview";
 proc print data=dt_summ;
   var memname  nobs nvar filesize memlabel;
 run;
@@ -26,7 +26,7 @@ run;
 title;
 data _null_;
  file print;
- put "For more details about the contents of the created data tables see `dictionaries.txt`  file in main folder";
+ put "For more details about the contents of the created data tables see `dictionaries.txt` file in the main folder";
 run;
 
 %mend print_readme_tables_document;

@@ -1,27 +1,61 @@
+%macro mem_order;
+  tt = .;
+  select(memname);
+   when("HLONG_TABLE")  tt=2;
+   when("RLONG_TABLE")  tt=1;
+   when("RSSI_TABLE")   tt=6;
+   when("SLONG_TABLE")  tt=3; 
+   when("REXIT_TABLE")  tt=5; 
+   when("RWIDE_TABLE")  tt=4;
+   otherwise tt=99;
+  end; 
+  mem_order =tt;
+  drop tt;
+%mend mem_order;
+
+
 %macro print_docs;
 /* Auxiliary macro creates summary datasets used by `print` macros */ 
 
+
+
 data dt_summ;
   set SASHELP.VTABLE;
+  %mem_order;
+
   if libname in ('_DATA');
-  keep libname memname  nobs nvar filesize memlabel;
+  keep libname memname mem_order nobs nvar filesize memlabel;
+run;
+
+proc sort data=dt_summ;
+ by mem_order;
+run;
+
+Title "--- XYZ";
+proc print data =dt_summ;
 run;
 
 data dict_summ;
   set SASHELP.VTABLE;
   if libname in ('_DICT');
-  keep libname memname  nobs nvar filesize memlabel;
+  %mem_order;
+  keep libname memname mem_order nobs nvar filesize memlabel;
+run;
+
+proc sort data=dict_summ;
+ by mem_order;
 run;
 
 /* Variables */
 data var_summ;
   set SASHELP.VCOLUMN;
   if libname ='_DATA';
-  keep libname memname memtype name type length varnum label format;
+  %mem_order;
+  keep libname memname mem_order memtype name type length varnum label format;
 run;
 
 proc sort data =var_summ;
-by memname varnum;
+by mem_order varnum;
 run;
 
 /*================*/
@@ -40,7 +74,7 @@ run;
 filename fx clear;
 
 
-/*--- README_tables file in table_long subfolder -----*/
+/*--- README_tables file in data_table subfolder -----*/
 filename fx "&xpath/data_tables/_README.&extn";
 proc printto print= fx new;
 run;

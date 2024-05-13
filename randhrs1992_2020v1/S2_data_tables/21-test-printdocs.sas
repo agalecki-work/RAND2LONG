@@ -4,7 +4,7 @@ options mprint nodate ls =255;
 /* ==== Execution starts ==== */
 %_project_setup;
 
-libname _data "&HRSpkg_path/tables_long";
+libname _data "&HRSpkg_path/data_tables";
 libname _dict "&output_path/dictionaries";
 
 filename _macros "&dir_path/_macros"; /* Local macros */
